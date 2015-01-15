@@ -23,7 +23,7 @@ All you need to do is, include the module in your tiapp.xml file.
 
 ## Properties
 
-* numViewControllers _(Number)_ Returns the number of stacked Windows on the NavigationWindow object, so you don't need to keep track of it.
+* `numViewControllers` _(Number)_ Returns the number of stacked Windows on the NavigationWindow object, so you don't need to keep track of it.
 
 ## Methods
 
