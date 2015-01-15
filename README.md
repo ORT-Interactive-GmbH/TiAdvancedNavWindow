@@ -47,51 +47,51 @@ All you need to do is, include the module in your tiapp.xml file.
 ## Example
 ```javascript
 var redWin = Titanium.UI.createWindow({
-backgroundColor: 'red',
-title: 'Red Window'
+  backgroundColor: 'red',
+  title: 'Red Window'
 });
 
 var navWindow = Titanium.UI.iOS.createNavigationWindow({
-window: redWin
+  window: redWin
 });
 
 var blueWin = Titanium.UI.createWindow({
-backgroundColor: 'blue',
-title: 'Blue Window'
+  backgroundColor: 'blue',
+  title: 'Blue Window'
 });
 
 var button = Titanium.UI.createButton({
-title: 'Open Blue Window'
+  title: 'Open Blue Window'
 });
 button.addEventListener('click', function(){
-navWindow.openWindow(blueWin, {animated:true});
-Ti.API.info("Num of Windows in Stack: " + navWindow.numViewControllers);
+  navWindow.openWindow(blueWin, {animated:true});
+  Ti.API.info("Num of Windows in Stack: " + navWindow.numViewControllers);
 });
 
 redWin.add(button);
 
 var navBarHidden = false;
 var button2 = Titanium.UI.createButton({
-title: 'Hide/Show Nav Bar'
+  title: 'Hide/Show Nav Bar'
 });
 button2.addEventListener('click', function(){
-if (!navBarHidden) {
-navWindow.hideNavBar();
-blueWin.setStatusBarStyle(Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT);
-navBarHidden = true;
-} else {
-navWindow.showNavBar();
-blueWin.setStatusBarStyle(Titanium.UI.iPhone.StatusBar.DEFAULT);
-navBarHidden = false;
-}
+  if (!navBarHidden) {
+    navWindow.hideNavBar();
+    blueWin.setStatusBarStyle(Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT);
+    navBarHidden = true;
+  } else {
+    navWindow.showNavBar();
+    blueWin.setStatusBarStyle(Titanium.UI.iPhone.StatusBar.DEFAULT);
+    navBarHidden = false;
+  }
 });
 blueWin.add(button2);
 
 var button3 = Titanium.UI.createButton({
-title: 'Pop to Root', bottom: 100
+  title: 'Pop to Root', bottom: 100
 });
 button3.addEventListener('click', function(){
-navWindow.popToRoot();
+  navWindow.popToRoot();
 });
 blueWin.add(button3);
 
