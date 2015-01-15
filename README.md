@@ -23,26 +23,80 @@ All you need to do is, include the module in your tiapp.xml file.
 
 ## Properties
 
-* numViewControllers _(Number)_ Returns the number of stacked Windows on the NavigationWindow object, so you don't need to keep track of it.
+* `numViewControllers` _(Number)_ Returns the number of stacked Windows on the NavigationWindow object, so you don't need to keep track of it.
 
 ## Methods
 
 * `popToRoot( args )` - Remove all existing windows on the stack and return to the root.
-	* args _(Object)_:
-	    * `animated` _(Boolean)_ - defines if the transition should be animated
+* args _(Object)_:
+* `animated` _(Boolean)_ - defines if the transition should be animated
 
 * `pop( args )` - Removes the active window from the stack. If the active window is the root window, nothing happens.
-	* args _(Object)_:
-	    * `animated` _(Boolean)_ - defines if the transition should be animated
+* args _(Object)_:
+* `animated` _(Boolean)_ - defines if the transition should be animated
 
 * `hideNavBar( args )` - Hides the navigation bar
-	* args _(Object)_:
-	    * `animated` _(Boolean)_ - defines if the transition should be animated
+* args _(Object)_:
+* `animated` _(Boolean)_ - defines if the transition should be animated
 
 
 * `showNavBar( args )` - Shows the navigation bar
-	* args _(Object)_:
-	    * `animated` _(Boolean)_ - defines if the transition should be animated
+* args _(Object)_:
+* `animated` _(Boolean)_ - defines if the transition should be animated
+
+## Example
+```javascript
+var redWin = Titanium.UI.createWindow({
+    backgroundColor: 'red',
+    title: 'Red Window'
+});
+
+var navWindow = Titanium.UI.iOS.createNavigationWindow({
+    window: redWin
+});
+
+var blueWin = Titanium.UI.createWindow({
+    backgroundColor: 'blue',
+    title: 'Blue Window'
+});
+
+var button = Titanium.UI.createButton({
+    title: 'Open Blue Window'
+});
+button.addEventListener('click', function(){
+    navWindow.openWindow(blueWin, {animated:true});
+    Ti.API.info("Num of Windows in Stack: " + navWindow.numViewControllers);
+});
+
+redWin.add(button);
+
+var navBarHidden = false;
+var button2 = Titanium.UI.createButton({
+    title: 'Hide/Show Nav Bar'
+});
+button2.addEventListener('click', function(){
+    if (!navBarHidden) {
+        navWindow.hideNavBar();
+        blueWin.setStatusBarStyle(Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT);
+        navBarHidden = true;
+    } else {
+        navWindow.showNavBar();
+        blueWin.setStatusBarStyle(Titanium.UI.iPhone.StatusBar.DEFAULT);
+        navBarHidden = false;
+    }
+});
+blueWin.add(button2);
+
+var button3 = Titanium.UI.createButton({
+    title: 'Pop to Root', bottom: 100
+});
+button3.addEventListener('click', function(){
+    navWindow.popToRoot();
+});
+blueWin.add(button3);
+
+navWindow.open();
+```
 
 ## License
 
