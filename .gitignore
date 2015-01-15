@@ -5,6 +5,8 @@ build
 *.pyo
 .DS_Store
 
+.settings
+
 # Xcode
 *.pbxuser
 *.mode1v3
